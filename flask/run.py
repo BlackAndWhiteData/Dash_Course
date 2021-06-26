@@ -1,9 +1,7 @@
-from flask import Flask
 from configs.config import config_dict
 import os
 import sys
-
-app = Flask(__name__)
+from app import create_app
 
 get_config_mode = os.environ.get('CONFIG_MODE','Debug')
 
@@ -12,7 +10,7 @@ try:
 except KeyError:
     sys.exit('Error: Invalid CONFIG_MODE env. variable')
 
-app.config.from_object(config_object)
+app = create_app(config_object)
 
 @app.route("/")
 def hello_world():
