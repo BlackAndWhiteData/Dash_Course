@@ -3,8 +3,10 @@ from importlib import import_module
 
 
 def register_blueprints(app):
-    module = import_module('app.home.routes')
-    app.register_blueprint(module.blueprint)
+
+    for blueprint_name in ('home','info'):
+        module = import_module('app.{}.routes'.format(blueprint_name))
+        app.register_blueprint(module.blueprint)
 
 
 def create_app(config):
