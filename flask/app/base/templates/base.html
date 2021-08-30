@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+
+    {% block meta %}
+        <meta name="author" content="Daniel" />
+    {% endblock meta %}
+
+    <title>www.xyz.com | {% block title %}{% endblock title %}</title>
+
+    {% endblock head %}
+
+</head>
+
+
+<body>
+    {% block body %}
+
+        {% block navbar %}
+            <div>  
+                {% include "navbar.html" %}
+            </div>  
+        {% endblock navbar %}
+
+        {% block content %}
+            {{ content }}
+        {% endblock content %}
+
+        {% block footer %}
+            <footer>
+                {% include "footer.html" %}
+            </footer>
+        {% endblock footer %}
+
+    {% endblock body %}
+
+</body>
+
+
+</html>
