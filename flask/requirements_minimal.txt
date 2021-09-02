@@ -1,1 +1,4 @@
 flask
+dash
+dash-bootstrap-components
+pandas
