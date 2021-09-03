@@ -1,1 +1,18 @@
-This is our first dashboard
+{% extends "base.html" %}
+
+{% block title %} First Dashboard {% endblock title %}
+
+{% block content %}
+    <div style="min-height: 1080px;">
+        <iframe 
+            noresize='noresize'
+            style='position: absolute; background: transparent; width: 95%; height: 90%;'
+            src='/dash/dashboard_1/'
+            frameborder="0">
+        </iframe>
+    </div>
+{% endblock content %}
+
+{% block stylesheets %}
+    {{ super() }}
+{% endblock stylesheets %}

@@ -4,14 +4,14 @@
 # visit http://127.0.0.1:8050/ in your web browser.
 
 import dash
+from dash import Dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.express as px
 import pandas as pd
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+url_base='/dash/dashboard_1/'
 
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
@@ -23,8 +23,8 @@ df = pd.DataFrame({
 
 fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
 
-app.layout = html.Div(children=[
-    html.H1(children='Hello Dash'),
+layout = html.Div(children=[
+    html.H1(children='Hello Dash iframe'),
 
     html.Div(children='''
         Dash: A web application framework for Python.
@@ -36,5 +36,7 @@ app.layout = html.Div(children=[
     )
 ])
 
-if __name__ == '__main__':
-    app.run_server(debug=True)
+def Add_Dash(server):
+    app = Dash(server=server,  url_base_pathname = url_base, external_stylesheets = external_stylesheets)
+    app.layout = layout
+    return app.server

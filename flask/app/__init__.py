@@ -1,5 +1,6 @@
 from flask import Flask
 from importlib import import_module
+from .dashboards.dash_layout import dashboard_1
 
 
 def register_blueprints(app):
@@ -13,5 +14,6 @@ def create_app(config):
     app = Flask(__name__,template_folder='./base/templates', static_folder='./base/static')
     app.config.from_object(config)
     register_blueprints(app)
+    app = dashboard_1.Add_Dash(app)
 
     return app
