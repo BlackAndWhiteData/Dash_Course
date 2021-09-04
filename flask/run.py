@@ -12,6 +12,6 @@ except KeyError:
 
 app = create_app(config_object)
 
-if config_object.Debug:
+if config_object.DEBUG:
     if __name__ == "__main__":
         app.run(port=5001,debug=True,threaded=False)
