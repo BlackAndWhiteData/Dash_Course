@@ -2,3 +2,4 @@ flask
 dash
 dash-bootstrap-components
 pandas
+uWSGI; platform_system != "Windows"
