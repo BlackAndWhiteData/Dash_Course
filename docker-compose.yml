@@ -1,0 +1,33 @@
+services:
+
+  flask_webapp:
+    build: ./flask
+    env_file: 
+      - flask.env
+    container_name: flask_webapp
+    restart: always
+    volumes:
+      - ./flask_webapp/reqlog:/tmp/reqlog
+      - ./flask_webapp/errlog:/tmp/errlog
+    expose:
+      - 8080
+    networks:
+      - mynetwork
+
+  nginx_web_server:
+    build: ./nginx
+    container_name: nginx_web_server
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx_web_server/nginx_errors:/var/log/nginx
+    depends_on:
+      - flask_webapp
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
